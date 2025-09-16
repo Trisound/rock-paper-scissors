@@ -1,4 +1,8 @@
 
+
+humanScore = 0
+computerScore = 0
+
 function getComputerChoice() {
    let number = Math.random();
    if (number < 0.33) {
@@ -23,41 +27,42 @@ function getHumanChoice() {
    choiceButton.addEventListener("click", () => {
       let choice = prompt("Whats your choice?");
 
-      alert(result(choice, getComputerChoice()));
+      alert(playRound(choice, getComputerChoice()));
       
    })
-
+   
 }
 console.log(getHumanChoice());
 
 
 
-function result(getHumanChoice, getComputerChoice) {
+function playRound(humanChoice, computerChoice) {
+   
+    
+   console.log((humanChoice))
 
-   console.log((getHumanChoice + getComputerChoice))
-
-   switch (getHumanChoice) {
+   switch (humanChoice) {
       case "Rock":
-         if (getComputerChoice === "Scissors")
+         if (computerChoice === "Scissors")
             return "You win! Rock beats Scissors.";
-         else if (getComputerChoice === "Paper") {
+         else if (computerChoice === "Paper") {
             return "You lose Paper beats Rock!";
          } else {
             return " It is a tie!"
          }
 
       case "Paper":
-         if (getComputerChoice === "Rock")
+         if (computerChoice === "Rock")
             return "You win! Paper beats Rock.";
-         else if (getComputerChoice === "Scissors") {
+         else if (computerChoice === "Scissors") {
             return "You lose Scissors beats Paper!";
          } else {
             return " It is a tie!"
          }
       case "Scissors":
-         if (getComputerChoice === "Paper")
+         if (computerChoice === "Paper")
             return "You win! Rock beats Scissors.";
-         else if (getComputerChoice === "Rock") {
+         else if (computerChoice === "Rock") {
             return "You lose Rock beats Scissors!";
          } else {
             return " It is a tie!"
@@ -65,5 +70,12 @@ function result(getHumanChoice, getComputerChoice) {
       default:
          return "Invalid input. Please use 'Rock', 'Paper', 'Scissors'."
    }
-
+  
 }
+
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+    
+
+playRound(humanSelection,computerSelection)
