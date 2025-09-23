@@ -1,16 +1,15 @@
 
 
-humanScore = 0
-computerScore = 0
+
 
 function getComputerChoice() {
    let number = Math.random();
    if (number < 0.33) {
-      return "Rock"
+      return "rock"
    } else if (number < 0.66) {
-      return "Paper"
+      return "paper"
    } else {
-      return "Scissor";
+      return "scissor";
    }
 
 
@@ -37,32 +36,34 @@ console.log(getHumanChoice());
 
 
 function playRound(humanChoice, computerChoice) {
-   
-    
-   console.log((humanChoice))
+   const normalizedhumanChoice = String(humanChoice).toLowerCase();
 
-   switch (humanChoice) {
-      case "Rock":
-         if (computerChoice === "Scissors")
+   if (["rock","r"].includes(humanChoice)) return "rock";
+   if (["paper","p"].includes(humanChoice)) return "paper";
+   if (["scissors","s"].includes(humanChoice)) return "scissors";
+
+   switch (normalizedhumanChoice) {
+      case "rock":
+         if (computerChoice === "scissors")
             return "You win! Rock beats Scissors.";
-         else if (computerChoice === "Paper") {
+         else if (computerChoice === "paper") {
             return "You lose Paper beats Rock!";
          } else {
             return " It is a tie!"
          }
 
-      case "Paper":
-         if (computerChoice === "Rock")
+      case "paper":
+         if (computerChoice === "rock")
             return "You win! Paper beats Rock.";
-         else if (computerChoice === "Scissors") {
+         else if (computerChoice === "scissors") {
             return "You lose Scissors beats Paper!";
          } else {
             return " It is a tie!"
          }
-      case "Scissors":
-         if (computerChoice === "Paper")
+      case "scissors":
+         if (computerChoice === "paper")
             return "You win! Rock beats Scissors.";
-         else if (computerChoice === "Rock") {
+         else if (computerChoice === "rock") {
             return "You lose Rock beats Scissors!";
          } else {
             return " It is a tie!"
@@ -77,5 +78,18 @@ function playRound(humanChoice, computerChoice) {
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
     
+humanScore = 0
+computerScore = 0
 
-playRound(humanSelection,computerSelection)
+playRound(humanSelection,computerSelection);{
+   if (humanSelection > computerSelection){
+       humanScore +1;
+   }
+  if (computerSelection > humanSelection){
+       computerScore +1;
+   } console.log(playRound(humanSelection,computerSelection));
+   
+  }
+console.log(humanScore)
+console.log(computerScore)
+
