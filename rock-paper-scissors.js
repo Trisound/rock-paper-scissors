@@ -18,8 +18,14 @@ function getComputerChoice() {
 console.log((getComputerChoice()));
 
 
-
-function getHumanChoice() {
+function playGame(){
+   let humanScore = 0
+   let computerScore = 0
+ for (let i = 0; i <5; i++){
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    roundResult = playRound(humanSelection,computerSelection,callback)
+ function getHumanChoice() {
    const choiceButton = document.querySelector("#choiceButton");
    const log = document.querySelector("#log");
 
@@ -33,12 +39,11 @@ function getHumanChoice() {
       
    })
    
+} 
 }
 console.log(getHumanChoice());
 
- let humanScore = 0
- let computerScore = 0
-
+ 
 
 function playRound(humanChoice, computerChoice, callback) {
    const normalizedhumanChoice = String(humanChoice).toLowerCase();
@@ -94,7 +99,8 @@ function playRound(humanChoice, computerChoice, callback) {
    }
   
 } 
-
+ return playGame
+}
 
     
 
