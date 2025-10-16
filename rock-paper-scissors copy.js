@@ -1,22 +1,9 @@
-  let roundsLeft = 5
-  
   let humanScore = 0
   let computerScore = 0
 
 
-  function setup(){
-   const choiceButton = document.querySelector("#choiceButton");
-   const log = document.querySelector("#log");
 
-   choiceButton.addEventListener("click", () => {
-      playRound(5);
-  
-      
-  })
-
-}
-
- function getComputerChoice() {
+function getComputerChoice() {
    let number = Math.random();
    if (number < 0.33) {
       return "rock"
@@ -25,6 +12,8 @@
    } else {
       return "scissor";
    }
+
+
 }
 
 console.log((getComputerChoice()));
@@ -32,25 +21,33 @@ console.log((getComputerChoice()));
 
 
  function getHumanChoice() {
-   let choice = prompt("Whats your choice?");
-   const normalizedhumanChoice = String(choice).toLowerCase();
+   const choiceButton = document.querySelector("#choiceButton");
+   const log = document.querySelector("#log");
 
-   if (["rock","r"].includes(normalizedhumanChoice)) return "rock";
-   if (["paper","p"].includes(normalizedhumanChoice)) return "paper";
-   if (["scissors","s"].includes(normalizedhumanChoice)) return "scissors";
+   choiceButton.addEventListener("click", () => {
+      let choice = prompt("Whats your choice?");
+      const computerChoice = getComputerChoice()
 
-  return null;
+      alert(playRound(choice,computerChoice, function(){console.log({"humanScore":humanScore,"Comp":computerScore,"MyHand":choice,"TheirHand":computerChoice});}));
+
+
       
-}
+   })
    
+} 
 
 console.log(getHumanChoice());
 
  
 
-function playRound(humanChoice, computerChoice,) {
-   
-   switch (humanChoice) {
+function playRound(humanChoice, computerChoice, callback) {
+   const normalizedhumanChoice = String(humanChoice).toLowerCase();
+
+   if (["rock","r"].includes(humanChoice)) return "rock";
+   if (["paper","p"].includes(humanChoice)) return "paper";
+   if (["scissors","s"].includes(humanChoice)) return "scissors";
+
+   switch (normalizedhumanChoice) {
       case "rock":
          if (computerChoice === "scissors") {
             humanScore++
@@ -98,29 +95,10 @@ function playRound(humanChoice, computerChoice,) {
   
 } 
 
-function playGame(rounds){
-  gamesleft = rounds;
-    
-
-  while(gamesleft > 0){
+function playGame(){
+ for (let i = 0; i <5; i++){
     humanSelection = getHumanChoice();
-    if (humanSelection === null){console.error("Somehing is wrong with the humanChoice")}
-
     computerSelection = getComputerChoice();
-    let result = playRound(humanSelection,computerSelection)
-     alert(result)
-     console.log({"humanScore":humanScore,"Comp":computerScore,"MyHand":humanSelection,"TheirHand":computerSelection});;
-
-
+    roundResult = playRound(humanSelection,computerSelection,callback)
     
-    
-    gamesleft--;
-  } 
 
-  console.log('Here are the Results', "you won" ,humanScore, "out of", rounds,"games")
-
-  humanScore = 0
-  computerScore = 0
-} 
-
-setup();
